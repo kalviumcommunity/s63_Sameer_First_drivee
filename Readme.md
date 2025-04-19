@@ -22,7 +22,7 @@ License
 
 ✨ Features
 Step-by-Step Buying Guide
-Interactive checklist covering:
+Interactive checklist covering::
 
 Choosing the right vehicle
 
