@@ -20,4 +20,26 @@ export const getForumPostById = async (req, res) => {
       res.status(500).json({ message: 'Failed to fetch post', error });
     }
   };
+
+  export const createForumPost = async (req, res) => {
+    try {
+      const { userId, question } = req.body;
+  
+      if (!userId || !question) {
+        return res.status(400).json({ message: 'userId and question are required.' });
+      }
+  
+      const newPost = new ForumPost({
+        userId,
+        question
+      });
+  
+      await newPost.save();
+  
+      res.status(201).json({ message: 'Forum post created successfully', data: newPost });
+    } catch (error) {
+      console.error('Error creating forum post:', error);
+      res.status(500).json({ message: 'Server error while creating forum post' });
+    }
+  };
   
