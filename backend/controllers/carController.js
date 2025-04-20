@@ -32,4 +32,46 @@ export const getCarById = async (req, res) => {
     }
   };
   
-  
+
+
+// POST API to create a new Car
+export const createCar = async (req, res) => {
+  try {
+    const {
+      brand,
+      model,
+      year,
+      type,
+      price,
+      mileage,
+      fuelType,
+      maintenanceCost,
+      safetyRating,
+      resaleValue
+    } = req.body;
+
+    // Basic validation (optional)
+    if (!brand || !model || !year || !type || !price || !mileage || !fuelType) {
+      return res.status(400).json({ message: 'Please fill all required fields.' });
+    }
+
+    const newCar = new Car({
+      brand,
+      model,
+      year,
+      type,
+      price,
+      mileage,
+      fuelType,
+      maintenanceCost,
+      safetyRating,
+      resaleValue
+    });
+
+    const savedCar = await newCar.save();
+    res.status(201).json(savedCar);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
