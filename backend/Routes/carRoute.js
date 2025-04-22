@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllCars, getCarById, createCar } from '../controllers/carController.js';
+import { createCar, getAllCars, getCarById, updateCar } from '../controllers/carController.js';
 
 const router = express.Router();
 
@@ -42,5 +42,23 @@ router.post('/cars', async (req, res) => {
       res.status(500).json({ message: error.message });
     }
   });
+  
+
+
+
+// POST - Create a car
+router.post('/cars', createCar);
+// PUT - Update a car
+router.put('/cars/:id', updateCar);
+
+// GET - Get all cars
+router.get('/cars', getAllCars);
+
+// GET - Get single car by id
+router.get('/cars/:id', getCarById);
+
+
+
+
   
   export default router;

@@ -1,5 +1,6 @@
 // GET /api/cars
 import Car from '../Models/Car.js';
+import bcrypt from 'bcryptjs';
 
 export const getAllCars = async (req, res) => {
   try {
@@ -75,3 +76,28 @@ export const createCar = async (req, res) => {
   }
 };
 
+// Update car details
+export const updateCar = async (req, res) => {
+  try {
+    const { id } = req.params; // Car ID from URL
+    const updatedData = req.body; // New data from client
+
+    const car = await Car.findById(id);
+
+    if (!car) {
+      return res.status(404).json({ message: 'Car not found' });
+    }
+
+    // Update the car with new data
+    Object.keys(updatedData).forEach((key) => {
+      car[key] = updatedData[key];
+    });
+
+    await car.save();
+
+    res.status(200).json({ message: 'Car updated successfully', data: car });
+  } catch (error) {
+    console.error('Error updating car:', error);
+    res.status(500).json({ message: 'Server error while updating car' });
+  }
+};

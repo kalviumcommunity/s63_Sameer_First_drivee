@@ -31,3 +31,28 @@ export const createComparison = async (req, res) => {
     res.status(500).json({ message: 'Server error while creating comparison' });
   }
 };
+// Update a comparison
+export const updateComparison = async (req, res) => {
+  try {
+    const { id } = req.params; // Comparison ID from URL
+    const updatedData = req.body; // New data from client
+
+    const comparison = await Comparison.findById(id);
+
+    if (!comparison) {
+      return res.status(404).json({ message: 'Comparison not found' });
+    }
+
+    // Update fields dynamically
+    Object.keys(updatedData).forEach((key) => {
+      comparison[key] = updatedData[key];
+    });
+
+    await comparison.save();
+
+    res.status(200).json({ message: 'Comparison updated successfully', data: comparison });
+  } catch (error) {
+    console.error('Error updating comparison:', error);
+    res.status(500).json({ message: 'Server error while updating comparison' });
+  }
+};
