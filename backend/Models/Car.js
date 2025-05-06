@@ -17,8 +17,8 @@ const carSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ['sedan', 'suv', 'hatchback', 'truck', 'coupe', 'convertible'],
-    required: true
+    required: true,
+    enum: ['sedan', 'suv', 'hatchback', 'truck', 'van', 'coupe']
   },
   price: {
     type: Number,
@@ -26,28 +26,63 @@ const carSchema = new mongoose.Schema({
   },
   mileage: {
     type: Number,
-    required: true // km/l or mpg
+    required: true
   },
   fuelType: {
     type: String,
-    enum: ['petrol', 'diesel', 'electric', 'hybrid'],
+    required: true,
+    enum: ['petrol', 'diesel', 'electric', 'hybrid']
+  },
+  features: [{
+    type: String
+  }],
+  maintenanceCost: {
+    type: Number,
     required: true
   },
-  maintenanceCost: {
-    type: Number // yearly estimated maintenance cost
-  },
   safetyRating: {
-    type: Number, // out of 5
+    type: Number,
+    required: true,
     min: 0,
     max: 5
   },
   resaleValue: {
-    type: Number // percentage
+    type: Number,
+    required: true
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+  images: [{
+    type: String,
+    validate: {
+      validator: function(v) {
+        return /^https?:\/\/.+/.test(v);
+      },
+      message: 'Invalid image URL'
+    }
+  }],
+  reviews: [{
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    rating: {
+      type: Number,
+      required: true,
+      min: 1,
+      max: 5
+    },
+    comment: String,
+    date: {
+      type: Date,
+      default: Date.now
+    }
+  }]
+}, {
+  timestamps: true
 });
+
+// Add indexes for common queries
+carSchema.index({ brand: 1, model: 1 });
+carSchema.index({ price: 1 });
+carSchema.index({ type: 1 });
 
 export default mongoose.model('Car', carSchema);

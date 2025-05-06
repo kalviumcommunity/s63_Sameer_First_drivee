@@ -1,5 +1,121 @@
-🚗 My First Car – A Guide for First-Time Car Buyers
-My First Car is a full-stack web application tailored for first-time car buyers. It empowers users with clear, actionable steps, personalized car recommendations, comparison tools, and a vibrant community forum for real-time advice and expert support.
+# My First Car
+
+A comprehensive web application designed to guide first-time car buyers through the car buying process. Built with the MERN stack (MongoDB, Express.js, React.js, Node.js).
+
+## Features
+
+- 🚗 Step-by-step buying guide with interactive checklist
+- 💰 Budget-based car suggestions
+- 🔄 Car comparison tool with save functionality
+- 📝 Interactive paperwork & registration checklist
+- 💬 Community forum with real-time updates
+- 📚 Saved recommendations & search history
+- 👨‍💼 Admin panel for content management
+
+## Tech Stack
+
+- **Frontend**: React.js, TypeScript, Tailwind CSS
+- **Backend**: Node.js, Express.js, TypeScript
+- **Database**: MongoDB with Mongoose
+- **Authentication**: JWT (with optional Firebase OAuth)
+- **Real-time Features**: Socket.IO
+- **Deployment**: Frontend on Netlify/Vercel, Backend on Render
+
+## Prerequisites
+
+- Node.js (v18 or higher)
+- MongoDB (local or Atlas)
+- npm or yarn
+
+## Setup Instructions
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env` file:
+   ```
+   VITE_API_URL=http://localhost:5000/api
+   ```
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+### Backend Setup
+
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env` file:
+   ```
+   PORT=5000
+   MONGODB_URI=mongodb://localhost:27017/my-first-car
+   JWT_SECRET=your_jwt_secret
+   FRONTEND_URL=http://localhost:5173
+   ```
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Project Structure
+
+```
+my-first-car/
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── hooks/
+│   │   ├── services/
+│   │   ├── types/
+│   │   └── utils/
+│   └── public/
+└── backend/
+    ├── src/
+    │   ├── controllers/
+    │   ├── models/
+    │   ├── routes/
+    │   ├── middleware/
+    │   ├── services/
+    │   └── utils/
+    └── tests/
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Thanks to all contributors and the open-source community
+- Special thanks to car experts who provided guidance for the buying guide content
 
 📋 Table of Contents
 Features
@@ -158,3 +274,4 @@ Data-Driven Decisions: Helps users find the best vehicle within budget.
 Community Support: Boosts confidence through expert and peer advice.
 
 Scalable & Extensible: Future-proof architecture ready for AI recommendations, dealership integrations, and financing calculators.
+
